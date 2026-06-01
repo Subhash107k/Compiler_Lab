@@ -1,20 +1,40 @@
-# Lab 2: Lexical Analyzer for Token Recognition using Flex
+# Lab 2 – Lexical Analyzer Using Flex
 
-This folder contains a Flex-based lexical analyzer that recognizes keywords, identifiers, numbers, operators, and separators.
+## Overview
 
-Files:
+This lab implements a simple lexical analyzer using Flex. The program scans input code and identifies different types of tokens such as keywords, identifiers, numbers, operators, and separators.
 
-- [tokenizer.l](tokenizer.l)
+## Files
 
-Build on Windows with WinFlexBison and GCC:
+- `tokenizer.l` – Flex source file containing token recognition rules
+
+## Compilation
+
+Build the lexer using WinFlexBison and GCC:
 
 ```powershell
 win_flex -o tokenizer.c tokenizer.l
 gcc tokenizer.c -o tokenizer.exe
 ```
 
-Run the lexer and type or paste a C-like snippet, then end input with `Ctrl+Z` and `Enter`:
+## Execution
+
+Run the program:
 
 ```powershell
 .\tokenizer.exe
 ```
+
+Enter or paste a C-like code snippet and press **Ctrl + Z** followed by **Enter** to end the input.
+
+## Learning Outcomes
+
+- Understand lexical analysis
+- Recognize common programming language tokens
+- Generate a lexer using Flex
+- Process source code input automatically
+
+## Author
+
+Compiler Lab – Lab 2  
+Lexical Analyzer Using Flex
