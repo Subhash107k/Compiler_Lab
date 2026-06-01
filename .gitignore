@@ -29,7 +29,9 @@
 *.dylib
 
 # Executables
-*.exe
+# (keep platform-specific binary patterns as needed)
+# Removed global `*.exe` to allow committing built executables when desired
+#*.exe
 *.out
 *.app
 *.i*86
@@ -37,7 +39,8 @@
 *.hex
 
 # Flex output generated from Lab_2/tokenizer.l
-/Lab_2/tokenizer.c
+# Removed explicit ignore for generated C so you can commit it if needed
+#/Lab_2/tokenizer.c
 
 # Debug files
 *.dSYM/
