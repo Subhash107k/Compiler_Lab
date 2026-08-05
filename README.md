@@ -1,81 +1,121 @@
 # Compiler Lab
 
-A collection of Compiler Design laboratory experiments implemented using **C Programming** and **Flex (Lexical Analyzer Generator)**. Each lab demonstrates fundamental concepts of compiler construction, lexical analysis, and token processing.
+A collection of Compiler Design laboratory experiments implemented using **C Programming** and **Flex (Lexical Analyzer Generator)**. These experiments demonstrate fundamental concepts of compiler construction, lexical analysis, token recognition, and source code processing.
+
+---
 
 ## Repository Structure
 
 ### Lab 1 – Basic C Programs
 
-Introduction to C programming concepts through simple arithmetic applications.
+Introduction to C programming through simple mathematical applications.
 
-**Programs:**
+#### Programs
 
 * `sum_program.c` – Calculates the sum of two numbers
 * `circle_area.c` – Calculates the area of a circle
 
-**Topics Covered:**
+#### Topics Covered
 
 * Variables and data types
 * User input and output
 * Arithmetic operations
 * Basic program structure
+* GCC compilation process
 
 ---
 
 ### Lab 2 – Lexical Analyzer Using Flex
 
-A simple lexical analyzer that scans source code and identifies various token types.
+A simple lexical analyzer that scans source code and identifies different categories of tokens.
 
-**Files:**
+#### Files
 
 * `tokenizer.l`
 
-**Recognized Tokens:**
+#### Recognized Tokens
 
 * Keywords
 * Identifiers
-* Numbers
+* Numeric constants
 * Operators
-* Separators
+* Delimiters / Separators
 
-**Topics Covered:**
+#### Topics Covered
 
 * Lexical analysis
 * Token recognition
-* Flex programming
+* Pattern matching using Flex
 * Source code scanning
+* Compiler front-end fundamentals
 
 ---
 
 ### Lab 3 – Token Counter Using Flex
 
-A lexer and token counter implementation that demonstrates token generation and counting.
+A token analyzer that recognizes tokens from source code and generates a summary report of token counts.
 
-**Files:**
+#### Files
 
 * `token_counter.l`
-* `lex.yy.c`
-* `token_counter.c`
+* `lex.yy.c` *(generated automatically by Flex)*
 
-**Features:**
+#### Features
 
-* Token generation using Flex
+* Keyword recognition
+* Identifier detection
+* Number recognition
+* Operator detection
+* Delimiter detection
+* Comment recognition
 * Token counting and classification
+* Summary report generation
+
+#### Sample Output
+
+```text
+KEYWORD: int
+IDENTIFIER: x
+OPERATOR: =
+NUMBER: 5
+DELIMITER: ;
+
+===== TOKEN SUMMARY =====
+Keywords    : 1
+Identifiers : 1
+Numbers     : 1
+Operators   : 1
+Delimiters  : 1
+Comments    : 0
+Total       : 5
+```
+
+#### Topics Covered
+
+* Lexer generation using Flex
+* Token classification
 * Source code analysis
-
-**Topics Covered:**
-
-* Lexer generation
-* Token processing
-* Compiler front-end concepts
+* Compiler front-end processing
+* Token statistics and reporting
 
 ---
 
 ## Requirements
 
-* GCC Compiler (MinGW/MSYS2 or equivalent)
+### Software
+
+* GCC Compiler (MinGW/MSYS2)
 * Flex / WinFlexBison
-* Windows PowerShell, Command Prompt, or Linux Terminal
+* Windows PowerShell, Command Prompt, Git Bash, or Linux Terminal
+
+### Verify Installation
+
+```powershell
+gcc --version
+flex --version
+```
+
+---
 
 ## Quick Build Guide
 
@@ -93,8 +133,8 @@ gcc circle_area.c -o circle_area.exe
 ```powershell
 cd Lab_2
 
-win_flex -o tokenizer.c tokenizer.l
-gcc tokenizer.c -o tokenizer.exe
+flex tokenizer.l
+gcc lex.yy.c -o tokenizer.exe
 ```
 
 ### Lab 3
@@ -104,8 +144,9 @@ cd Lab_3
 
 flex token_counter.l
 gcc lex.yy.c -o lexer.exe
-gcc token_counter.c -o token_counter.exe
 ```
+
+---
 
 ## Running Programs
 
@@ -122,28 +163,82 @@ gcc token_counter.c -o token_counter.exe
 .\tokenizer.exe
 ```
 
-Enter a C-like code snippet and press **Ctrl + Z** followed by **Enter** to finish input.
+Enter source code and finish input with:
+
+```text
+Ctrl + Z
+Enter
+```
+
+---
 
 ### Lab 3
 
+#### Interactive Mode
+
 ```powershell
-type sample_input.txt | lexer.exe | token_counter.exe
+.\lexer.exe
 ```
+
+Example Input:
+
+```c
+int x = 5;
+```
+
+Finish input using:
+
+```text
+Ctrl + Z
+Enter
+```
+
+#### File Input Mode
+
+Create a file named `sample_input.txt`:
+
+```c
+int main()
+{
+    int x = 5;
+    return x;
+}
+```
+
+Run:
+
+```powershell
+.\lexer.exe < sample_input.txt
+```
+
+---
 
 ## Learning Outcomes
 
 After completing these experiments, students will be able to:
 
-* Understand the structure of C programs
-* Perform basic compilation using GCC
-* Implement lexical analyzers using Flex
+* Understand the phases of a compiler
+* Perform program compilation using GCC
+* Create lexical analyzers using Flex
 * Recognize and classify programming language tokens
-* Generate lexers automatically
+* Generate lexers automatically from specifications
 * Analyze source code through tokenization
-* Understand fundamental compiler design concepts
+* Understand compiler front-end processing
+* Implement token counting and reporting systems
+
+---
+
+## Technologies Used
+
+* C Programming Language
+* Flex (Fast Lexical Analyzer Generator)
+* GCC Compiler
+* Windows PowerShell / Linux Terminal
+
+---
 
 ## Author
 
-Compiler Design Laboratory
+**Compiler Design Laboratory**
 
 Department of Computer Science & Engineering
