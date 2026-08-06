@@ -19,6 +19,7 @@ This repository is designed for students learning compiler design and practical 
 3. Token counting and reporting using Flex.
 4. Arithmetic expression parsing and evaluation using Flex + Bison.
 5. If-else statement parsing and syntax validation using Flex + Bison.
+6. FIRST and FOLLOW set generation for an expression grammar.
 
 Each lab contains source files, build instructions, and sample usage to help you understand the compiler construction workflow.
 
@@ -53,6 +54,10 @@ Compiler_Lab/
 │   ├── ifelse.y
 │   └── README.md
 │
+├── Lab_6/
+│   ├── Lab_6.cpp
+│   └── README.md
+│
 ├── LICENSE
 └── README.md
 ```
@@ -61,10 +66,10 @@ Compiler_Lab/
 
 # ⚙️ Prerequisites
 
-* GCC Compiler (MinGW / MSYS2)
-* Flex or WinFlexBison
-* Bison or WinFlexBison
-* Windows PowerShell, Command Prompt, or Git Bash
+- GCC Compiler (MinGW / MSYS2)
+- Flex or WinFlexBison
+- Bison or WinFlexBison
+- Windows PowerShell, Command Prompt, or Git Bash
 
 ## Verify installation
 
@@ -120,6 +125,13 @@ flex ifelse.l
 gcc ifelse.tab.c lex.yy.c -o ifelsechecker.exe
 ```
 
+## Lab 6 — FIRST and FOLLOW Set Generator
+
+```powershell
+cd Lab_6
+g++ -std=c++17 -o lab_6.exe Lab_6.cpp
+```
+
 ---
 
 # ▶️ Running the Labs
@@ -173,6 +185,13 @@ cd Lab_5
 .\ifelsechecker.exe
 ```
 
+## Lab 6
+
+```powershell
+cd Lab_6
+.\lab_6.exe
+```
+
 ---
 
 # 🧪 Lab Details
@@ -181,8 +200,8 @@ cd Lab_5
 
 ### Files
 
-* [Lab_1/sum_program.c](Lab_1/sum_program.c)
-* [Lab_1/circle_area.c](Lab_1/circle_area.c)
+- [Lab_1/sum_program.c](Lab_1/sum_program.c)
+- [Lab_1/circle_area.c](Lab_1/circle_area.c)
 
 ### Description
 
@@ -190,10 +209,10 @@ Lab 1 contains two beginner C programs that demonstrate console input, arithmeti
 
 ### Features
 
-* Read integers from standard input
-* Perform addition
-* Calculate circle area using `π × r²`
-* Display formatted output
+- Read integers from standard input
+- Perform addition
+- Calculate circle area using `π × r²`
+- Display formatted output
 
 ### Sample Input and Output
 
@@ -215,7 +234,7 @@ Area = 28.26
 
 ### Files
 
-* [Lab_2/tokenizer.l](Lab_2/tokenizer.l)
+- [Lab_2/tokenizer.l](Lab_2/tokenizer.l)
 
 ### Description
 
@@ -223,11 +242,11 @@ Lab 2 uses Flex to build a lexical analyzer that tokenizes C-style code. This la
 
 ### Supported Tokens
 
-* Keywords: `int`, `float`, `if`, `else`, `return`
-* Identifiers
-* Numeric constants
-* Operators
-* Separators and delimiters
+- Keywords: `int`, `float`, `if`, `else`, `return`
+- Identifiers
+- Numeric constants
+- Operators
+- Separators and delimiters
 
 ### Sample output
 
@@ -247,8 +266,8 @@ Separator: }
 
 ### Files
 
-* [Lab_3/token_counter.l](Lab_3/token_counter.l)
-* `Lab_3/lex.yy.c` *(generated automatically by Flex)*
+- [Lab_3/token_counter.l](Lab_3/token_counter.l)
+- `Lab_3/lex.yy.c` _(generated automatically by Flex)_
 
 ### Description
 
@@ -256,12 +275,12 @@ Lab 3 extends lexical analysis by counting token categories and producing a summ
 
 ### Token categories
 
-* Keywords
-* Identifiers
-* Numbers
-* Operators
-* Delimiters
-* Comments
+- Keywords
+- Identifiers
+- Numbers
+- Operators
+- Delimiters
+- Comments
 
 ### Sample output
 
@@ -295,8 +314,8 @@ Total       : 14
 
 ### Files
 
-* [Lab_4/key.l](Lab_4/key.l)
-* [Lab_4/y.y](Lab_4/y.y)
+- [Lab_4/key.l](Lab_4/key.l)
+- [Lab_4/y.y](Lab_4/y.y)
 
 ### Description
 
@@ -304,11 +323,11 @@ Lab 4 builds an expression parser with Flex and Bison. The parser evaluates inte
 
 ### Supported expressions
 
-* Addition: `+`
-* Subtraction: `-`
-* Multiplication: `*`
-* Division: `/`
-* Parentheses: `()`
+- Addition: `+`
+- Subtraction: `-`
+- Multiplication: `*`
+- Division: `/`
+- Parentheses: `()`
 
 ### Example input
 
@@ -328,15 +347,15 @@ Result = 9
 
 ### Error handling
 
-* Detects invalid syntax
-* Reports division by zero
+- Detects invalid syntax
+- Reports division by zero
 
 ## Lab 5 — If-Else Parser Using Flex + Bison
 
 ### Files
 
-* [Lab_5/ifelse.l](Lab_5/ifelse.l)
-* [Lab_5/ifelse.y](Lab_5/ifelse.y)
+- [Lab_5/ifelse.l](Lab_5/ifelse.l)
+- [Lab_5/ifelse.y](Lab_5/ifelse.y)
 
 ### Description
 
@@ -344,11 +363,11 @@ Lab 5 implements a parser that validates if and if-else statements and resolves 
 
 ### Supported syntax
 
-* Simple `if` statements
-* `if-else` statements
-* Nested if-else structures
-* Relational expressions
-* Assignment statements
+- Simple `if` statements
+- `if-else` statements
+- Nested if-else structures
+- Relational expressions
+- Assignment statements
 
 ### Example input
 
@@ -364,31 +383,76 @@ valid
 valid
 ```
 
+## Lab 6 — FIRST and FOLLOW Set Generator
+
+### Files
+
+- [Lab_6/Lab_6.cpp](Lab_6/Lab_6.cpp)
+- [Lab_6/README.md](Lab_6/README.md)
+
+### Description
+
+Lab 6 computes the FIRST and FOLLOW sets for an expression grammar. It demonstrates grammar analysis for LL(1) parser preparation.
+
+### Sample output
+
+```text
+------ FIRST SETS ------
+FIRST(E) = { (, id }
+FIRST(E') = { +, e }
+FIRST(T) = { (, id }
+FIRST(T') = { *, e }
+FIRST(F) = { (, id }
+
+------ FOLLOW SETS ------
+FOLLOW(E) = { $, ) }
+FOLLOW(E') = { $, ) }
+FOLLOW(T) = { +, $, ) }
+FOLLOW(T') = { +, $, ) }
+FOLLOW(F) = { *, +, $, ) }
+```
+
+### Quick Links
+
+- [Open Lab 6 README](Lab_6/README.md)
+- [Open Lab 6 source](Lab_6/Lab_6.cpp)
+
+## Sample Inputs and Outputs
+
+| Lab   | Sample Input                                              | Sample Output                                                                                                                                                                                                                                            |
+| ----- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Lab 1 | `4 5` for `sum_program.c`; `3` for `circle_area.c`        | `Sum = 9`; `Area = 28.26`                                                                                                                                                                                                                                |
+| Lab 2 | `int main() { return 5; }`                                | `Keyword: int`, `Identifier: main`, `Separator: (`, `Separator: )`, `Separator: {`, `Keyword: return`, `Number: 5`, `Separator: ;`, `Separator: }`                                                                                                       |
+| Lab 3 | `int main() { int x = 10; return x; }`                    | `KEYWORD: int`, `IDENTIFIER: main`, `DELIMITER: (`, `DELIMITER: )`, `DELIMITER: {`, `KEYWORD: int`, `IDENTIFIER: x`, `OPERATOR: =`, `NUMBER: 10`, `DELIMITER: ;`, `KEYWORD: return`, `IDENTIFIER: x`, `DELIMITER: ;`, `DELIMITER: }`, then token summary |
+| Lab 4 | `3+4*2`, `(3+4)*2`, `10/5+7`                              | `Result = 11`, `Result = 14`, `Result = 9`                                                                                                                                                                                                               |
+| Lab 5 | `if (a>b) x=y;` and `if (a>b) x=y; else x=z;`             | `valid`, `valid`                                                                                                                                                                                                                                         |
+| Lab 6 | No runtime input; the grammar is hardcoded in `Lab_6.cpp` | FIRST/FOLLOW sets for `E`, `E'`, `T`, `T'`, and `F`                                                                                                                                                                                                      |
+
 ---
 
 # 🎯 Why this repository matters
 
 These labs provide hands-on experience with the compiler front-end pipeline:
 
-* Lexical analysis using regular expressions
-* Token generation and classification
-* Parser construction with Bison grammars
-* Semantic actions for expression evaluation
-* Syntax validation and error reporting
+- Lexical analysis using regular expressions
+- Token generation and classification
+- Parser construction with Bison grammars
+- Semantic actions for expression evaluation
+- Syntax validation and error reporting
 
-The sequence from Lab 1 to Lab 5 gradually builds toward a working compiler-like front end.
+The sequence from Lab 1 to Lab 6 gradually builds toward a working compiler-like front end.
 
 ---
 
 # 🛠️ Technologies Used
 
-| Technology                  | Purpose                       |
-| --------------------------- | ----------------------------- |
-| C Programming               | Implementation language       |
-| GCC                         | Compiler                      |
-| Flex (Lex)                  | Lexical analyzer generator    |
-| Bison (Yacc)                | Parser generator              |
-| PowerShell / Git Bash       | Build and execution shell     |
+| Technology            | Purpose                    |
+| --------------------- | -------------------------- |
+| C Programming         | Implementation language    |
+| GCC                   | Compiler                   |
+| Flex (Lex)            | Lexical analyzer generator |
+| Bison (Yacc)          | Parser generator           |
+| PowerShell / Git Bash | Build and execution shell  |
 
 ---
 
@@ -404,7 +468,7 @@ See the [LICENSE](LICENSE) file for details.
 
 **Subhash Thakur**
 
-GitHub: https://github.com/subhash107k
+GitHub: [https://github.com/subhash107k](https://github.com/subhash107k)
 
 ---
 
